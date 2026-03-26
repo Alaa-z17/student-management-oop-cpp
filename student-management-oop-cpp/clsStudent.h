@@ -4,8 +4,12 @@
 #include<vector>
 #include<fstream>
 #include<iomanip>
+#include "clsString.h"
 
 using namespace std;
+
+
+string StudentsFileName = "Students.txt";
 
 class clsStudent
 {
@@ -16,6 +20,7 @@ private:
     string _Email = "";
     float  _Grade = 0;
     bool   _MarkDelete = false;
+
 
 public:
     clsStudent()
@@ -204,6 +209,59 @@ public:
                 Count++;
         }
         return Count;
+    }
+
+    clsStudent ConvertLineToStudent(string Line, string Separator = "#//#")
+    {
+        vector<string> vData = clsString::Split(Line, Separator);
+
+        return clsStudent( vData[0],vData[1],stoi(vData[2]), vData[3],stof(vData[4]));
+    }
+
+    string ConvertStudentToLine(clsStudent Student,string Separator = "#//#")
+    {
+        string Line = "";
+        Line += Student.GetFirstName() + Separator;
+        Line += Student.GetLastName() + Separator;
+        Line += to_string(Student.GetAge()) + Separator;
+        Line += Student.GetEmail() + Separator;
+        Line += to_string(Student.GetGrade());
+        return Line;
+    }
+
+    vector<clsStudent> LoadStudentsFromFile()
+    {
+        vector<clsStudent> vStudents;
+        fstream MyFile;
+        MyFile.open(StudentsFileName, ios::in);
+
+        if (MyFile.is_open())
+        {
+            string Line;
+            while (getline(MyFile, Line))
+            {
+                if (Line != "")
+                    vStudents.push_back(ConvertLineToStudent(Line));
+            }
+            MyFile.close();
+        }
+        return vStudents;
+    }
+
+    void SaveStudentsToFile(vector<clsStudent>& vStudents)
+    {
+        fstream MyFile;
+        MyFile.open(StudentsFileName, ios::out);
+
+        if (MyFile.is_open())
+        {
+            for (clsStudent& S : vStudents)
+            {
+                if (!S.GetMarkDelete())
+                    MyFile << ConvertStudentToLine(S) << endl;
+            }
+            MyFile.close();
+        }
     }
 
 };
