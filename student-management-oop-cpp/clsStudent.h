@@ -4,6 +4,7 @@
 #include<vector>
 #include<fstream>
 #include<iomanip>
+
 using namespace std;
 
 class clsStudent
@@ -98,7 +99,57 @@ public:
     {
         return _FirstName + " " + _LastName;
     }
+
+    string GetGradeLetter()
+    {
+
+        if (_Grade >= 90) return "A+";
+        if (_Grade >= 85) return "A";
+        if (_Grade >= 80) return "B+";
+        if (_Grade >= 75) return "B";
+        if (_Grade >= 70) return "C+";
+        if (_Grade >= 65) return "C";
+        if (_Grade >= 60) return "D+";
+        if (_Grade >= 50) return "D";
+        return "F";
+    }
+
+    string GetGradeStatus()
+    {
+        if (_Grade >= 50)
+            return "Pass";
+        else
+            return "Fail";
+    }
+
+    bool IsPass()
+    {
+        return _Grade >= 50;
+    }
+
+    bool IsFail()
+    {
+        return _Grade < 50;
+    }
+
+    bool IsExcellent()
+    {
+        return _Grade >= 90;
+    }
+
+    static string GetGradeLetterByGrade(float Grade)
+    {
+        if (Grade >= 90) return "A+";
+        if (Grade >= 85) return "A";
+        if (Grade >= 80) return "B+";
+        if (Grade >= 75) return "B";
+        if (Grade >= 70) return "C+";
+        if (Grade >= 65) return "C";
+        if (Grade >= 60) return "D+";
+        if (Grade >= 50) return "D";
+        return "F";
+    }
+
 };
 
-// Initialize static member
 int clsStudent::StudentCount = 0;
