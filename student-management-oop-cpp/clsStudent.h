@@ -149,6 +149,62 @@ public:
         if (Grade >= 50) return "D";
         return "F";
     }
+    // =====================
+    // Static Methods
+    // =====================
+
+    static int GetStudentCount()
+    {
+        return StudentCount;
+    }
+
+    static float CalculateAverage(vector<clsStudent>& vStudents)
+    {
+        if (vStudents.empty())
+            return 0;
+
+        float Total = 0;
+        for (clsStudent& S : vStudents)
+            Total += S.GetGrade();
+
+        return Total / vStudents.size();
+    }
+
+    static clsStudent* GetTopStudent(vector<clsStudent>& vStudents)
+    {
+        if (vStudents.empty())
+            return nullptr;
+
+        clsStudent* Top = &vStudents[0];
+        for (clsStudent& S : vStudents)
+        {
+            if (S.GetGrade() > Top->GetGrade())
+                Top = &S;
+        }
+        return Top;
+    }
+
+    static int CountPassed(vector<clsStudent>& vStudents)
+    {
+        int Count = 0;
+        for (clsStudent& S : vStudents)
+        {
+            if (S.IsPass())
+                Count++;
+        }
+        return Count;
+    }
+
+    static int CountFailed(vector<clsStudent>& vStudents)
+    {
+        int Count = 0;
+        for (clsStudent& S : vStudents)
+        {
+            if (S.IsFail())
+                Count++;
+        }
+        return Count;
+    }
 
 };
 
