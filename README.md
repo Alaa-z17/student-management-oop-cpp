@@ -4,7 +4,7 @@ A console-based student management application built with Object-Oriented Progra
 
 ## 🎥 Video Tutorial
 
-[![Student Management System C++ Tutorial](https://img.youtube.com/vi/ACTUAL_VIDEO_ID/0.jpg)](https://youtu.be/ACTUAL_VIDEO_ID)
+[![Student Management System C++ Tutorial](https://img.youtube.com/vi/CVac2U4vJ94/0.jpg)](https://youtu.be/CVac2U4vJ94)
 
 *Click the image above to watch a complete walkthrough of the Student Management System!*
 
