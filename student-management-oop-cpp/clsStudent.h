@@ -54,7 +54,7 @@ public:
     {
         return _FirstName;
     }
-
+	_declspec(property(get = GetFirstName, put = SetFirstName)) string FirstName;
     void SetLastName(string LastName)
     {
         _LastName = LastName;
@@ -63,16 +63,18 @@ public:
     {
         return _LastName;
     }
-
+    _declspec(property(get = GetLastName, put = SetLastName)) string LastName;
     void SetAge(short Age)
     {
+        if (Age < 4 || Age > 120)
+            return;
         _Age = Age;
     }
     short GetAge()
     {
         return _Age;
     }
-
+    _declspec(property(get = GetAge, put = SetAge)) string Age;
     void SetEmail(string Email)
     {
         _Email = Email;
@@ -81,16 +83,18 @@ public:
     {
         return _Email;
     }
-
+    _declspec(property(get = GetEmail, put = SetEmail)) string Email;
     void SetGrade(float Grade)
     {
+        if (Grade < 0 || Grade >100)
+            return;
         _Grade = Grade;
     }
     float GetGrade()
     {
         return _Grade;
     }
-
+    _declspec(property(get = GetGrade, put = SetGrade)) string Grade;
     void SetMarkDelete(bool MarkDelete)
     {
         _MarkDelete = MarkDelete;
@@ -99,7 +103,7 @@ public:
     {
         return _MarkDelete;
     }
-
+    _declspec(property(get = GetMarkDelete, put = SetMarkDelete)) string MarkDelete;
     string FullName()
     {
         return _FirstName + " " + _LastName;
@@ -154,9 +158,7 @@ public:
         if (Grade >= 50) return "D";
         return "F";
     }
-    // =====================
-    // Static Methods
-    // =====================
+
 
     static int GetStudentCount()
     {
@@ -211,14 +213,14 @@ public:
         return Count;
     }
 
-    clsStudent ConvertLineToStudent(string Line, string Separator = "#//#")
+   static clsStudent ConvertLineToStudent(string Line, string Separator = "#//#")
     {
         vector<string> vData = clsString::Split(Line, Separator);
 
         return clsStudent( vData[0],vData[1],stoi(vData[2]), vData[3],stof(vData[4]));
     }
 
-    string ConvertStudentToLine(clsStudent Student,string Separator = "#//#")
+    static string ConvertStudentToLine(clsStudent Student,string Separator = "#//#")
     {
         string Line = "";
         Line += Student.GetFirstName() + Separator;
@@ -229,7 +231,7 @@ public:
         return Line;
     }
 
-    vector<clsStudent> LoadStudentsFromFile()
+   static vector<clsStudent> LoadStudentsFromFile()
     {
         vector<clsStudent> vStudents;
         fstream MyFile;
@@ -248,7 +250,7 @@ public:
         return vStudents;
     }
 
-    void SaveStudentsToFile(vector<clsStudent>& vStudents)
+    static  void SaveStudentsToFile(vector<clsStudent>& vStudents)
     {
         fstream MyFile;
         MyFile.open(StudentsFileName, ios::out);
@@ -263,7 +265,21 @@ public:
             MyFile.close();
         }
     }
+  static void AddStudent(vector<clsStudent>& vStudents,clsStudent s)
+    {
+        vStudents.push_back(s);
+        SaveStudentsToFile(vStudents);
+        cout << "\nStudent Added Successfully!\n";
+    }
+ static int FindStudentIndexByFullName(string FullName,vector<clsStudent>& vStudents)
+  {
+      for (int i = 0; i < (int)vStudents.size(); i++)
+      {
+          if (vStudents[i].FullName() == FullName)
+              return i;
+      }
+      return -1;
+  }
 
 };
-
 int clsStudent::StudentCount = 0;
