@@ -46,6 +46,7 @@ A console-based student management application built with Object-Oriented Progra
 
 ## 📁 Project Structure
 
+```text
 student-management-oop-cpp/
 │
 ├── 📄 student-management-oop-cpp.cpp # Main entry point
@@ -71,8 +72,9 @@ student-management-oop-cpp/
 │
 └── 💾 Data/
 └── Students.txt # Persistent storage file (auto-generated)
+```
 
-text
+---
 
 ## 🚀 Getting Started
 
