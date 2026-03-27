@@ -1,10 +1,11 @@
 #include<iostream>
-#include"clsStudent.h"
+#include "clsMainScreen.h"
 
 using namespace std;
 
 int main()
 {
+    clsMainScreen::RunStudentSystem();
     return 0;
 }
 

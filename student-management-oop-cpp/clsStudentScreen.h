@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 class clsStudentScreen
 {
 private:
@@ -44,19 +45,19 @@ private:
         clsStudent student;
 
         cout << "Enter First Name : ";
-        student.SetFirstName(clsInputValidate::ReadString());
+        student.FirstName = clsInputValidate<string>::ReadString();
 
         cout << "Enter Last Name  : ";
-        student.SetLastName(clsInputValidate::ReadString());
+        student.LastName = clsInputValidate<string>::ReadString();
 
         cout << "Enter Age        : ";
-        student.SetAge(clsInputValidate::ReadShortNumberBetween(4,120));
+        student.Age = clsInputValidate<short>::ReadNumberBetween(4,120);
 
-        cout << "Enter Email      : ";
-        student.SetEmail(clsInputValidate::ReadEmail());
+       // cout << "Enter Email      : ";
+        student.Email = clsInputValidate<string>::ReadEmail();
 
          cout << "Enter Grade (0-100): ";
-         student.SetGrade(clsInputValidate::ReadShortNumberBetween(0,100));
+         student.Grade = clsInputValidate<short>::ReadNumberBetween(0,100);
 
          return student;
     }
@@ -117,7 +118,7 @@ public:
 
         string FullName = "";
         cout << "\nEnter Student Full Name: ";
-        getline(cin >> ws, FullName);
+        FullName = clsInputValidate<string>::ReadString();
 
         int Index = clsStudent::FindStudentIndexByFullName(FullName, vStudents);
         if (Index == -1)
@@ -137,7 +138,7 @@ public:
 
         string FullName = "";
         cout << "\nEnter Student Full Name to Delete: ";
-        FullName = clsInputValidate::ReadString();
+        FullName = clsInputValidate<string>::ReadString();
 
         int Index = clsStudent::FindStudentIndexByFullName(FullName, vStudents);
         if (Index == -1)
@@ -154,11 +155,82 @@ public:
 
         if (toupper(Confirm) == 'Y')
         {
-            vStudents[Index].SetMarkDelete(true);
+            vStudents[Index].MarkDelete = true;
             clsStudent::SaveStudentsToFile(vStudents);
             vStudents = clsStudent::LoadStudentsFromFile();
             cout << "\nStudent Deleted Successfully!\n";
         }
+    }
+    static void UpdateStudent(vector<clsStudent>& vStudents)
+    {
+        if (vStudents.empty())
+        {
+            cout << "\nNo Students Found!\n";
+            return;
+        }
+
+        PrintStudentList(vStudents);
+
+        string FullName = "";
+        cout << "\nEnter Student Full Name to Update: ";
+		FullName = clsInputValidate<string>::ReadString();
+
+        int Index = clsStudent::FindStudentIndexByFullName(FullName, vStudents);
+        if (Index == -1)
+        {
+            cout << "\nStudent [" << FullName << "] Not Found!\n";
+            return;
+        }
+
+        _PrintStudentCard(vStudents[Index]);
+
+        char Confirm = 'N';
+        cout << "\nAre you sure you want to update? Y/N? ";
+        cin >> Confirm;
+
+        if (toupper(Confirm) == 'Y')
+        {
+            cout << "\nEnter New Details:\n";
+            float NewGrade = 0;
+            string NewEmail = "";
+
+            cout << "Enter New Email : ";
+            NewEmail = clsInputValidate<string>::ReadEmail();
+            cout << "Enter New Grade (0-100): ";
+			NewGrade = clsInputValidate<short>::ReadNumberBetween(0, 100);
+            
+
+            vStudents[Index].Email = NewEmail;
+            vStudents[Index].Grade = NewGrade;
+            clsStudent::SaveStudentsToFile(vStudents);
+            cout << "\nStudent Updated Successfully!\n";
+        }
+    }
+
+    static void ShowStatistics(vector<clsStudent>& vStudents)
+    {
+        if (vStudents.empty())
+        {
+            cout << "\nNo Students Found!\n";
+            return;
+        }
+
+        cout << "\n";
+        cout << string(45, '=') << "\n";
+        cout << "         Student Statistics\n";
+        cout << string(45, '=') << "\n";
+        cout << "Total Students : " << vStudents.size() << "\n";
+        cout << "Passed         : " << clsStudent::CountPassed(vStudents) << "\n";
+        cout << "Failed         : " << clsStudent::CountFailed(vStudents) << "\n";
+        cout << "Average Grade  : " << clsStudent::CalculateAverage(vStudents) << "\n";
+
+        clsStudent* Top = clsStudent::GetTopStudent(vStudents);
+        if (Top != nullptr)
+            cout << "Top Student    : " << Top->FullName()
+            << " (" << Top->GetGrade() << " - "
+            << Top->GetGradeLetter() << ")\n";
+
+        cout << string(45, '=') << "\n";
     }
 
 };

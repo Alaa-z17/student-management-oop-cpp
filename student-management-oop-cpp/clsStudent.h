@@ -23,11 +23,11 @@ private:
 
 
 public:
+ 
     clsStudent()
     {
-        StudentCount++;
-    }
 
+    }
     clsStudent(string FirstName, string LastName,
         short Age, string Email, float Grade)
     {
@@ -37,11 +37,6 @@ public:
         _Email = Email;
         _Grade = Grade;
         StudentCount++;
-    }
-
-    ~clsStudent()
-    {
-        StudentCount--;
     }
 
     static int StudentCount;
@@ -74,7 +69,7 @@ public:
     {
         return _Age;
     }
-    _declspec(property(get = GetAge, put = SetAge)) string Age;
+    _declspec(property(get = GetAge, put = SetAge)) short Age;
     void SetEmail(string Email)
     {
         _Email = Email;
@@ -94,16 +89,17 @@ public:
     {
         return _Grade;
     }
-    _declspec(property(get = GetGrade, put = SetGrade)) string Grade;
+    _declspec(property(get = GetGrade, put = SetGrade)) float Grade;
     void SetMarkDelete(bool MarkDelete)
     {
-        _MarkDelete = MarkDelete;
+        StudentCount--;
+        _MarkDelete = MarkDelete; 
     }
     bool GetMarkDelete()
     {
         return _MarkDelete;
     }
-    _declspec(property(get = GetMarkDelete, put = SetMarkDelete)) string MarkDelete;
+    _declspec(property(get = GetMarkDelete, put = SetMarkDelete)) bool MarkDelete;
     string FullName()
     {
         return _FirstName + " " + _LastName;
@@ -247,6 +243,7 @@ public:
             }
             MyFile.close();
         }
+		 StudentCount = (int)vStudents.size();
         return vStudents;
     }
 
@@ -269,6 +266,7 @@ public:
     {
         vStudents.push_back(s);
         SaveStudentsToFile(vStudents);
+        StudentCount++;
         cout << "\nStudent Added Successfully!\n";
     }
  static int FindStudentIndexByFullName(string FullName,vector<clsStudent>& vStudents)

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{2bd69ceb-68dc-4cef-9b2f-94a9275557e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="student-management-oop-cpp.cpp">
@@ -26,13 +29,19 @@
     <ClInclude Include="clsString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsStudentScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clsInputValidate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsDate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsStudentScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsMainScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
