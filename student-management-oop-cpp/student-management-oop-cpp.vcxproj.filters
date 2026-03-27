@@ -16,6 +16,12 @@
     <Filter Include="Header Files\Screens">
       <UniqueIdentifier>{2bd69ceb-68dc-4cef-9b2f-94a9275557e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Screens\StudentScreens">
+      <UniqueIdentifier>{a2da181a-8217-4f6c-82fe-eb7becca087b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Libraries">
+      <UniqueIdentifier>{f78e40ab-de6f-4dab-a2c3-916dd6fb1111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="student-management-oop-cpp.cpp">
@@ -26,23 +32,41 @@
     <ClInclude Include="clsStudent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clsInputValidate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clsDate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clsStudentScreen.h">
-      <Filter>Header Files\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="clsMainScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsListStudentsScreen.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsAddStudentScreen.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsFindStudentScreen.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDeleteStudentScreen.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsUpdateStudentScreen.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsShowStudentsStatistics.h">
+      <Filter>Header Files\Screens\StudentScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDate.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="clsInputValidate.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="clsString.h">
+      <Filter>Header Files\Libraries</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

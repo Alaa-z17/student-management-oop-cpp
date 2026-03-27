@@ -130,12 +130,18 @@
     <ClCompile Include="student-management-oop-cpp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clsAddStudentScreen.h" />
     <ClInclude Include="clsDate.h" />
+    <ClInclude Include="clsDeleteStudentScreen.h" />
+    <ClInclude Include="clsFindStudentScreen.h" />
     <ClInclude Include="clsInputValidate.h" />
+    <ClInclude Include="clsListStudentsScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
+    <ClInclude Include="clsScreen.h" />
+    <ClInclude Include="clsShowStudentsStatistics.h" />
     <ClInclude Include="clsString.h" />
     <ClInclude Include="clsStudent.h" />
-    <ClInclude Include="clsStudentScreen.h" />
+    <ClInclude Include="clsUpdateStudentScreen.h" />
     <ClInclude Include="Global.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

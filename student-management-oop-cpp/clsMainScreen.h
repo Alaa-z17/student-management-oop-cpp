@@ -1,12 +1,18 @@
 #pragma once
 #include<iostream>
 #include"clsInputValidate.h"
-#include "clsStudentScreen.h"
 #include "clsStudent.h"
 #include "Global.h"
+#include "clsListStudentsScreen.h"
+#include "clsAddStudentScreen.h"
+#include "clsUpdateStudentScreen.h"
+#include "clsFindStudentScreen.h"
+#include "clsShowStudentsStatistics.h"
+#include "clsDeleteStudentScreen.h"
+
 using namespace std;
 
-class clsMainScreen
+class clsMainScreen : public clsScreen
 {
 private :
     enum enMainMenuOptions
@@ -36,7 +42,7 @@ private :
   {
       cout << "\n";
       cout << string(45, '=') << "\n";
-      cout << "     Student Management System\n";
+      _DrawScreenHeader("MainScreen");
       cout << string(45, '=') << "\n";
       cout << "[1] List All Students\n";
       cout << "[2] Add New Student\n";
@@ -68,30 +74,36 @@ public:
             switch (Choice)
             {
             case enMainMenuOptions::eListStudents:
-               clsStudentScreen::PrintStudentList(vStudents);
+                _ResetScreen();
+               clsListStudentsScreen::PrintStudentList(vStudents);
                 break;
 
             case enMainMenuOptions::eAddStudents:
-                clsStudentScreen::AddStudents(vStudents);
+                _ResetScreen();
+                clsAddStudentScreen::AddStudents(vStudents);
                 break;
 
             case enMainMenuOptions::eDeleteStudent:
-                clsStudentScreen::DeleteStudent(vStudents);
+                _ResetScreen();
+                clsDeleteStudentScreen::DeleteStudent(vStudents);
                 break;
 
             case enMainMenuOptions::eUpdateStudent:
-                clsStudentScreen::UpdateStudent(vStudents);
+                clsUpdateStudentScreen::UpdateStudent(vStudents);
                 break;
 
             case enMainMenuOptions::eFindStudent:
-                clsStudentScreen::FindAndPrintStudent(vStudents);
+                _ResetScreen();
+                clsFindStudentScreen::FindAndPrintStudent(vStudents);
                 break;
 
             case enMainMenuOptions::eShowStats:
-                clsStudentScreen::ShowStatistics(vStudents);
+                _ResetScreen();
+                clsShowStudentsStatistics::ShowStatistics(vStudents);
                 break;
 
             case enMainMenuOptions::eExit:
+                _ResetScreen();
                 cout << "\nGoodbye!\n";
                 break;
             }
